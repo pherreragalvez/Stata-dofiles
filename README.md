@@ -8,3 +8,6 @@ Compilation of Stata do files written during my undergraduate studies in economi
   * Descriptive statistics.
   * Logistic regression analysis.
   * Logistic regression analysis with Nearest Neighbor Matching.
+* <a href="https://github.com/pherreragalvez/Stata-scripts/tree/main/Problem%20Sets%2017" target="_blank">Problem Sets 2017</a>.
+* <a href="https://github.com/pherreragalvez/Stata-scripts/tree/main/Problem%20Sets%2018" target="_blank">Problem Sets 2018</a>.
+
