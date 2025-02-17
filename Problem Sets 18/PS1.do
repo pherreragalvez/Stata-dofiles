@@ -1,7 +1,7 @@
 
 clear all
 *cd "C:\Users\Williams\Desktop\MICRO III\PS1"
-cd "C:\Pablo\Documentos\FEN\0 20181 Otoño\Microeconomía III\Problems Set\1\PSET1"
+cd "C:\Pablo\Documentos\FEN\0 20181 OtoÃ±o\MicroeconomÃ­a III\Problems Set\1\PSET1"
 use nsw_dw_treated&controls
 
 *3
