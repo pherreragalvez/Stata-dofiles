@@ -1,4 +1,4 @@
-# Stata-scripts
+# Stata-dofiles
 Compilation of Stata do files written during my undergraduate studies in economics and working period at the Ministry of Social Development of Chile.
 
 ## Tasks included.
