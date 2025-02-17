@@ -1,20 +1,20 @@
-/* Problem Set 1. MicroeconomÌa III
+/* Problem Set 1. Microeconom√≠a III
 Rut 1: 18.935.148-8
 Rut 2: 19.133..542-2
-Semestre OtoÒo 2017*/ 
+Semestre Oto√±o 2017*/ 
 
 clear all 
 set more off
 
 *PARTE 2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2000
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2000
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2000_Stata.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2000_Stata.dta", clear
 /*La primera pregunta que responderemos es la referida a 
-la pir·mide poblacional, pues luego dropearemos individuos*/
+la pir√°mide poblacional, pues luego dropearemos individuos*/
 
-*e) Pir·mide poblacional
+*e) Pir√°mide poblacional
 
 *Re-ordenamos variable sexo
 
@@ -62,7 +62,7 @@ label values ocup Ocupados
 gen ft=0
 replace ft=1 if ocup==0 | ocup==1
 
-***Ahora podemos obtener los datos de la pir·mide poblacional
+***Ahora podemos obtener los datos de la pir√°mide poblacional
 *Tablas
 
 *Poblacional
@@ -72,7 +72,7 @@ tab tramoedad if sexo==1
 tab tramoedad if sexo==0 & ft==1
 tab tramoedad if sexo==1 & ft==1
 
-/*Fin de la parte e) pir·mide poblacional
+/*Fin de la parte e) pir√°mide poblacional
 Ahora continuaremos con la parte 2.1.a hasta la d.*/
 
 *Dropeamos a quienes no tienen edad para trabajar
@@ -90,22 +90,22 @@ replace escolaridad=4 if educ==5 | educ==7
 replace escolaridad=5 if educ==8 | educ==10
 replace escolaridad=6 if educ==9 | educ==11
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(r)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -175,12 +175,12 @@ tab ocup if r==13
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yopraj, nq(10)
 xtile quintil = yopraj, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yopraj if escolaridad==0
 summ yopraj if escolaridad==1
 summ yopraj if escolaridad==2
@@ -189,7 +189,7 @@ summ yopraj if escolaridad==4
 summ yopraj if escolaridad==5
 summ yopraj if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yopraj if escolaridad==0 & sexo==0
 summ yopraj if escolaridad==1 & sexo==0
@@ -235,14 +235,14 @@ gen pens=.
 replace pens=1 if y13==1 | y13==2 | y13==3 | y13==6
 replace pens=0 if y13==0 
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 gen totpen=yjubaj 
 replace totpen=. if y13==4 | y13==5
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace pens=. if totpen==.
 /* Ahora los pen=1 reciben el monto totpen==yjubaj*/ 
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -251,7 +251,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -269,7 +269,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y15==1
@@ -281,7 +281,7 @@ replace institucion=6 if y15==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==0
 summ totpen if institucion==1
 summ totpen if institucion==2
@@ -291,7 +291,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -305,7 +305,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -315,7 +315,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2000 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2000 */
 **********************************************************
 
 clear all 
@@ -323,9 +323,9 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2003
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2003
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2003.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2003.dta", clear
 
 *Re-ordenamos variable sexo
 replace sexo=0 if sexo==1
@@ -366,22 +366,22 @@ replace escolaridad=4 if educ==5 | educ==7
 replace escolaridad=5 if educ==8 | educ==10
 replace escolaridad=6 if educ==9 | educ==11
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(r)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -486,19 +486,19 @@ tab ocup if r==13
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yopraj, nq(10)
 xtile quintil = yopraj, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yopraj if escolaridad==0
 summ yopraj if escolaridad==2
 summ yopraj if escolaridad==3
 summ yopraj if escolaridad==4
 summ yopraj if escolaridad==5
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yopraj if escolaridad==0 & sexo==0
 summ yopraj if escolaridad==2 & sexo==0
@@ -540,21 +540,21 @@ gen pens=.
 replace pens=1 if y4_t1==1 | y4_t1==2 | y4_t1==5 
 replace pens=0 if y4_t1==0 
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 gen totpen=yjubaj 
 replace totpen=. if y4_t1==3 | y4_t1==4 
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace pens=. if totpen==.
 /* Ahora los pen=1 reciben el monto totpen==yjubaj*/ 
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==2
 sum totpen if escolaridad==3
 sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==2 & sexo==1
@@ -568,7 +568,7 @@ sum totpen if escolaridad==3 & sexo==0
 sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y4_i1==1
@@ -580,7 +580,7 @@ replace institucion=6 if y4_i1==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==1
 summ totpen if institucion==2
 summ totpen if institucion==3
@@ -589,7 +589,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -603,7 +603,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -613,7 +613,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2003 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2003 */
 **********************************************************
 
 clear all 
@@ -621,9 +621,9 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2006
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2006
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2006.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2006.dta", clear
 
 *Re-ordenamos variable sexo
 
@@ -666,22 +666,22 @@ replace escolaridad=4 if educ==5 | educ==6
 replace escolaridad=5 if educ==7
 replace escolaridad=6 if educ==8
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(r)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -794,12 +794,12 @@ tab ocup if r==13
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yopraj, nq(10)
 xtile quintil = yopraj, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yopraj if escolaridad==0
 summ yopraj if escolaridad==1
 summ yopraj if escolaridad==2
@@ -808,7 +808,7 @@ summ yopraj if escolaridad==4
 summ yopraj if escolaridad==5
 summ yopraj if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yopraj if escolaridad==0 & sexo==0
 summ yopraj if escolaridad==1 & sexo==0
@@ -849,12 +849,12 @@ summ yopraj if decil==10
 
 *d) Pensiones
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 egen totpen = rsum(yjubaj yvitaj yinvaj)
 *Hay quienes reciben pensiones de orfandad o viudez, no se consideraron
 replace totpen=. if totpen==0
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -863,7 +863,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -881,7 +881,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y20_1i==1 | y20_2i==1 | y20_3i==1
@@ -893,7 +893,7 @@ replace institucion=6 if y20_1i==6 | y20_2i==6 | y20_3i==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==0
 summ totpen if institucion==1
 summ totpen if institucion==2
@@ -903,7 +903,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -917,7 +917,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -927,7 +927,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2006 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2006 */
 **********************************************************
 
 clear all 
@@ -935,10 +935,10 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2009
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2009
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2009stata.dta", clear
-merge 1:1 segmento idviv hogar o using "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen_2009.dta"
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2009stata.dta", clear
+merge 1:1 segmento idviv hogar o using "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen_2009.dta"
 
 *Re-ordenamos variable sexo
 
@@ -980,22 +980,22 @@ replace escolaridad=4 if educ==6 | educ==7
 replace escolaridad=5 if educ==8
 replace escolaridad=6 if educ==9
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(region)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -1163,12 +1163,12 @@ tab ocup if region==15
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yopraj, nq(10)
 xtile quintil = yopraj, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yopraj if escolaridad==0
 summ yopraj if escolaridad==1
 summ yopraj if escolaridad==2
@@ -1177,7 +1177,7 @@ summ yopraj if escolaridad==4
 summ yopraj if escolaridad==5
 summ yopraj if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yopraj if escolaridad==0 & sexo==0
 summ yopraj if escolaridad==1 & sexo==0
@@ -1218,12 +1218,12 @@ summ yopraj if decil==10
 
 *d) Pensiones
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 egen totpen = rsum(yjubaj yvitaj yinvaj)
 *Hay quienes reciben pensiones de orfandad o viudez, no se consideraron
 replace totpen=. if totpen==0
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -1232,7 +1232,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -1250,7 +1250,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y21i1==1 | y21i2==1 | y21i3==1
@@ -1263,7 +1263,7 @@ replace institucion=6 if y21i1==6 | y21i2==6 | y21i3==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==1
 summ totpen if institucion==2
 summ totpen if institucion==3
@@ -1272,7 +1272,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -1286,7 +1286,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -1296,7 +1296,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2009 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2009 */
 **********************************************************
 
 clear all 
@@ -1304,11 +1304,11 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2011
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2011
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2011_octubre2011_enero2012_principal_08032013stata.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2011_octubre2011_enero2012_principal_08032013stata.dta", clear
 gen o=ck1
-merge 1:1 folio o using "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\ingresos_originales_casen_2011_stata.dta"
+merge 1:1 folio o using "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\ingresos_originales_casen_2011_stata.dta"
 
 *Re-ordenamos variable sexo
 
@@ -1356,27 +1356,27 @@ replace escolaridad=6 if educ==8
 restore
 replace escolaridad=7 if e6a==13 
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(region)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
 tab participa if sexo==1
-*ParticipaciÛn por escolaridad
+*Participaci√≥n por escolaridad
 tab participa if escolaridad==0
 tab participa if escolaridad==1
 tab participa if escolaridad==2
@@ -1385,7 +1385,7 @@ tab participa if escolaridad==4
 tab participa if escolaridad==5
 tab participa if escolaridad==6
 tab participa if escolaridad==7
-*ParticipaciÛn por escolaridad y sexo
+*Participaci√≥n por escolaridad y sexo
 *Hombres
 tab participa if escolaridad==0 & sexo==0
 tab participa if escolaridad==1 & sexo==0
@@ -1404,7 +1404,7 @@ tab participa if escolaridad==4 & sexo==1
 tab participa if escolaridad==5 & sexo==1
 tab participa if escolaridad==6 & sexo==1
 tab participa if escolaridad==7 & sexo==1
-*ParticipaciÛn por regiones
+*Participaci√≥n por regiones
 tab participa if region==1
 tab participa if region==2
 tab participa if region==3
@@ -1487,12 +1487,12 @@ tab ocup if region==15
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yopraj, nq(10)
 xtile quintil = yopraj, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yopraj if escolaridad==0
 summ yopraj if escolaridad==1
 summ yopraj if escolaridad==2
@@ -1501,7 +1501,7 @@ summ yopraj if escolaridad==4
 summ yopraj if escolaridad==5
 summ yopraj if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yopraj if escolaridad==0 & sexo==0
 summ yopraj if escolaridad==1 & sexo==0
@@ -1541,12 +1541,12 @@ summ yopraj if decil==10
 ***********************Fin 2.1.c****************************
 
 *d) Pensiones
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 egen totpen = rsum(yjubaj yvitaj yinvaj)
 *Hay quienes reciben pensiones de orfandad o viudez, no se consideraron
 replace totpen=. if totpen==0
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -1555,7 +1555,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -1573,7 +1573,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y27ai==1 | y27bi==1 | y27ci==1
@@ -1586,7 +1586,7 @@ replace institucion=6 if y27ai==6 | y27bi==6 | y27ci==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==1
 summ totpen if institucion==2
 summ totpen if institucion==3
@@ -1595,7 +1595,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -1609,7 +1609,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -1619,7 +1619,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2011 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2011 */
 **********************************************************
 
 clear all 
@@ -1627,9 +1627,9 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2013
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2013
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\ProblemSet 1\casen2013_mn_b_principal.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\ProblemSet 1\casen2013_mn_b_principal.dta", clear
 
 *Re-ordenamos variable sexo
 
@@ -1673,22 +1673,22 @@ replace escolaridad=5 if educ==7 | educ==9
 replace escolaridad=6 if educ==8 | educ==10 | educ==11
 replace escolaridad=7 if educ==12
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(region)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -1806,12 +1806,12 @@ tab ocup if region==15
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yoprcor, nq(10)
 xtile quintil = yoprcor, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yoprcor if escolaridad==0
 summ yoprcor if escolaridad==1
 summ yoprcor if escolaridad==2
@@ -1820,7 +1820,7 @@ summ yoprcor if escolaridad==4
 summ yoprcor if escolaridad==5
 summ yoprcor if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yoprcor if escolaridad==0 & sexo==0
 summ yoprcor if escolaridad==1 & sexo==0
@@ -1861,12 +1861,12 @@ summ yoprcor if decil==10
 
 *d) Pensiones
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 egen totpen = rsum(y2009 y2010 y2601 y2602 y2701c yinv)
 *Hay quienes reciben pensiones de orfandad o viudez, no se consideraron
 replace totpen=. if totpen==0
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -1875,7 +1875,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -1893,7 +1893,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=1 if y27ai==1 | y27bi==1
@@ -1906,7 +1906,7 @@ replace institucion=6 if y27ai==6 | y27bi==6
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==0
 summ totpen if institucion==1
 summ totpen if institucion==2
@@ -1916,7 +1916,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -1930,7 +1930,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -1940,7 +1940,7 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2013 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2013 */
 **********************************************************
 
 clear all 
@@ -1948,14 +1948,14 @@ set more off
 
 *2. Oferta Laboral
 
-*a) Fuerza de trabajo y tasa de participaciÛn. CASEN 2015 
+*a) Fuerza de trabajo y tasa de participaci√≥n. CASEN 2015 
 
-use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - OtoÒo 2017\MicroeconomÌa III\Paper\CASEN\Casen 2015.dta", clear
+use "C:\Users\nnnnn\Dropbox\Universidad\7mo Semestre - Oto√±o 2017\Microeconom√≠a III\Paper\CASEN\Casen 2015.dta", clear
 
 /*La primera pregunta que responderemos es la referida a 
-la pir·mide poblacional, pues luego dropearemos individuos*/
+la pir√°mide poblacional, pues luego dropearemos individuos*/
 
-*e) Pir·mide poblacional
+*e) Pir√°mide poblacional
 
 *Re-ordenamos variable sexo
 
@@ -2003,7 +2003,7 @@ label values ocup Ocupados
 gen ft=0
 replace ft=1 if ocup==0 | ocup==1
 
-***Ahora podemos obtener los datos de la pir·mide poblacional
+***Ahora podemos obtener los datos de la pir√°mide poblacional
 *Tablas
 
 *Poblacional
@@ -2012,10 +2012,10 @@ tab tramoedad if sexo==1
 *Fuerza de trabajo
 tab tramoedad if sexo==0 & ft==1
 tab tramoedad if sexo==1 & ft==1
-/*Fin de la parte e) pir·mide poblacional
+/*Fin de la parte e) pir√°mide poblacional
 Ahora continuaremos con la parte 2.1.a hasta la d.*/
 
-*Primero generamos niÒos en el hogar por tramos
+*Primero generamos ni√±os en el hogar por tramos
 *Esto lo usaremos en la 2.2.l
 gen nin=0
 replace nin=1 if edad<18
@@ -2027,7 +2027,7 @@ gen nin3=0
 replace nin3=1 if edad>5 & edad<=10 
 gen nin4=0
 replace nin4=1 if edad>10 & edad<18
-*Asignamos una dummy=1 si hay niÒos o niÒas en el hogar.
+*Asignamos una dummy=1 si hay ni√±os o ni√±as en el hogar.
 bys folio: egen qnin=total(nin)
 bys folio: egen qnin1=total(nin1)
 bys folio: egen qnin2=total(nin2)
@@ -2055,22 +2055,22 @@ replace escolaridad=5 if educ==7 | educ==9
 replace escolaridad=6 if educ==8 | educ==10 | educ==11
 replace escolaridad=7 if educ==12
 
-label define ESC 0 "No asistiÛ" 1 "B·sica incompleta" 2 "B·sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
+label define ESC 0 "No asisti√≥" 1 "B√°sica incompleta" 2 "B√°sica completa" 3 "Media incompleta" 4 "Media completa" 5 "Superior incompleta" 6 "Superior completa" 7 "Postgrado"
 label values escolaridad ESC
 label list ESC
 
 ***Fuerza de trabajo igual a:***
 table ft
-/* Ac· el 0 es inactivos y 1 la fuerza de trabajo*/
+/* Ac√° el 0 es inactivos y 1 la fuerza de trabajo*/
 
 *Fuerza de trabajo por escolaridad
 table ft, by(escolaridad)
-*Fuerza de trabajo por escolaridad y gÈnero
+*Fuerza de trabajo por escolaridad y g√©nero
 table ft, by(escolaridad sexo)
 *Fuerza de trabajo por regiones
 table ft, by(region)
 
-***Tasa de participaciÛn***
+***Tasa de participaci√≥n***
 gen participa=0
 replace participa=1 if ocup==0 | ocup==1
 tab participa if sexo==0
@@ -2188,12 +2188,12 @@ tab ocup if region==15
 
 ***********************Fin 2.1.b****************************
 
-*c) Promedio de ingreso de la ocupaciÛn principal 
+*c) Promedio de ingreso de la ocupaci√≥n principal 
 *Armar deciles y quintiles
 xtile decil = yoprcor, nq(10)
 xtile quintil = yoprcor, nq(5)
 
-*Promedio de ingreso seg˙n escolaridad
+*Promedio de ingreso seg√∫n escolaridad
 summ yoprcor if escolaridad==0
 summ yoprcor if escolaridad==1
 summ yoprcor if escolaridad==2
@@ -2202,7 +2202,7 @@ summ yoprcor if escolaridad==4
 summ yoprcor if escolaridad==5
 summ yoprcor if escolaridad==6
 
-*Promedio de ingreso seg˙n escolaridad y sexo
+*Promedio de ingreso seg√∫n escolaridad y sexo
 *Hombres
 summ yoprcor if escolaridad==0 & sexo==0
 summ yoprcor if escolaridad==1 & sexo==0
@@ -2247,7 +2247,7 @@ summ yoprcor if decil==10
 gen pens=.
 replace pens=1 if y26_1a==1 | y26_1b==1 | y26_1c==1 | y26_1d==1 | y26_1e==1 | y26_1f==1 | y26_1j==1 
 
-*Limpiamos a quienes dicen no saber el monto de la pensiÛn (marca 99)
+*Limpiamos a quienes dicen no saber el monto de la pensi√≥n (marca 99)
 replace y26_1am=. if y26_1am==99 | y26_1am==0 
 replace y26_2bm1=. if y26_2bm1==99
 replace y26_2bm2=. if y26_2bm2==99
@@ -2261,14 +2261,14 @@ replace y26_2h=. if y26_2h==99
 replace y26_2i=. if y26_2i==99
 replace y26_2j=. if y26_2j==99
 
-*Generamos el monto de la pensiÛn (pues pueden recibir m·s de una)
+*Generamos el monto de la pensi√≥n (pues pueden recibir m√°s de una)
 egen totpen = rsum (y26_1am y26_2bm1 y26_2bm2 y26_2c y26_1dm y26_2em1 y26_2em2 y26_2f)
 replace totpen=. if totpen==0
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace pens=. if totpen==.
 /* Ahora los pen=1 reciben el monto totpen*/ 
 
-*PensiÛn promedio por escolaridad
+*Pensi√≥n promedio por escolaridad
 sum totpen if escolaridad==0
 sum totpen if escolaridad==1
 sum totpen if escolaridad==2
@@ -2277,7 +2277,7 @@ sum totpen if escolaridad==4
 sum totpen if escolaridad==5
 sum totpen if escolaridad==6
 
-*PensiÛn promedio por escolaridad y sexo
+*Pensi√≥n promedio por escolaridad y sexo
 *Mujeres
 sum totpen if escolaridad==0 & sexo==1
 sum totpen if escolaridad==1 & sexo==1
@@ -2295,7 +2295,7 @@ sum totpen if escolaridad==4 & sexo==0
 sum totpen if escolaridad==5 & sexo==0
 sum totpen if escolaridad==6 & sexo==0
 
-*Tipos de sistema de previsiÛn.
+*Tipos de sistema de previsi√≥n.
 gen institucion=.
 
 replace institucion=0 if totpen==89764
@@ -2308,7 +2308,7 @@ replace institucion=6 if y26_3b_in==6 | y26_3c_in==6 | y26_3e_in==6 | y26_3f_in=
 *Hay quienes reciben pensiones de orfandad o viudez, los hacemos missing values
 replace institucion=. if totpen==.
 
-*Pnesiones seg˙n instituciÛn (sistema de previsiÛn)
+*Pnesiones seg√∫n instituci√≥n (sistema de previsi√≥n)
 summ totpen if institucion==0
 summ totpen if institucion==1
 summ totpen if institucion==2
@@ -2318,7 +2318,7 @@ summ totpen if institucion==5
 summ totpen if institucion==6
 
 *Pensiones por decil
-*Armamos el decilpen para ordenar deciles seg˙n monto de la pensiÛn
+*Armamos el decilpen para ordenar deciles seg√∫n monto de la pensi√≥n
 xtile decilpen=totpen, nq(10)
 
 summ totpen if decilpen==1
@@ -2332,7 +2332,7 @@ summ totpen if decilpen==8
 summ totpen if decilpen==9
 summ totpen if decilpen==10
 
-*Pensiones por ocupaciÛn 
+*Pensiones por ocupaci√≥n 
 
 summ totpen if ocup==0
 summ totpen if ocup==1
@@ -2342,13 +2342,13 @@ summ ocup if sexo==0 & edad>65
 summ ocup if sexo==1 & edad>60
 
 **********************************************************
-/* Fin parte 2.1, de estadÌstica descriptiva CASEN 2015 */
+/* Fin parte 2.1, de estad√≠stica descriptiva CASEN 2015 */
 **********************************************************
 
-/*2.2 Modelo Aplicado, sÛlo se utilizar· la CASEN 2015
+/*2.2 Modelo Aplicado, s√≥lo se utilizar√° la CASEN 2015
 Impacto de la discapacidad en el mercado laboral chileno*/
 drop if edad< 15 & edad>65
-*f) EcuaciÛn de Mincer con discapacidad, personas en edad de trabajar
+*f) Ecuaci√≥n de Mincer con discapacidad, personas en edad de trabajar
 
 *Generamos variable Salario por hora
 gen w=.
@@ -2372,20 +2372,20 @@ reg w disc esc exp, r
 **Mincer con logaritmo del salario
 reg lnw disc esc exp, r
 
-/*Es mejor la segunda especificaciÛn puesto que
+/*Es mejor la segunda especificaci√≥n puesto que
 al analizar con logaritmo natural tomamos en cuenta las 
 variaciones porcentuales, no los cambios unitarios (que tienden
-a ser m·s acentuados en salarios m·s altos), evitando sesgar
-al alza la estimaciÛn por los elevados valores de la 
+a ser m√°s acentuados en salarios m√°s altos), evitando sesgar
+al alza la estimaci√≥n por los elevados valores de la 
 cota superior*/
 
 ***********************Fin 2.2.f****************************
 
-*g) hacer un comentario tÈcnico, sin estimaciones. Es mejor que el error estÈ en la dependiente, asÌ que el compaÒero est· en nada
+*g) hacer un comentario t√©cnico, sin estimaciones. Es mejor que el error est√© en la dependiente, as√≠ que el compa√±ero est√° en nada
 
 ***********************Fin 2.2.g****************************
 
-*h) Modelo anterior controlado por sexo edad y regiÛn
+*h) Modelo anterior controlado por sexo edad y regi√≥n
 reg lnw disc esc exp sexo edad region exp2, r
 /*Ojo, esto entrega colinealidad en la escolaridad*/
 
@@ -2395,7 +2395,7 @@ reg lnw disc esc exp sexo edad region exp2, r
 
 ***********************Fin 2.2.i****************************
 
-*j) DeterminaciÛn de efectos heterogÈneos de la discapacidad sobre el salario
+*j) Determinaci√≥n de efectos heterog√©neos de la discapacidad sobre el salario
 *Para las mujeres
 preserve
 drop if sexo==0
@@ -2411,12 +2411,12 @@ restore
 gen sexodisc=sexo*disc
 reg lnw disc sexo esc exp sexodisc, r
 
-*Mostramos si hay diferencias significativas (verificar diferencias seg˙n sexo)
+*Mostramos si hay diferencias significativas (verificar diferencias seg√∫n sexo)
 
 ***********************Fin 2.2.j****************************
 
-*k) Efectos seg˙n tipos de discapacidad
-*Generamos las dummies de discapacidades seg˙n tipo
+*k) Efectos seg√∫n tipos de discapacidad
+*Generamos las dummies de discapacidades seg√∫n tipo
 gen discfis=. 
 replace discfis=1 if s31c1==1
 replace discfis=0 if s31c1==2 | s31c1==3 | s31c1==4 | s31c1==5 | s31c1==6
@@ -2449,7 +2449,7 @@ reg lnw esc exp sexo edad region exp2 discfis discsen discog discmul, r
 
 ***********************Fin 2.2.l****************************
 
-*L) Modelo de participaciÛn laboral (Probit)
+*L) Modelo de participaci√≥n laboral (Probit)
 *Generamos las variables necesarias
 gen edad2=edad^2
 
@@ -2471,7 +2471,7 @@ probit ocup disc escolaridad edad edad2 qnin1 qnin2 qnin3 qnin4 jefh cas urb
 *3.1
 clear all
 set more off
-cd "C:\PABLO\Documentos\FEN\20171 OtoÒo\MicroeconomÌa III\Problems Set\PS1\3\stata"
+cd "C:\PABLO\Documentos\FEN\20171 Oto√±o\Microeconom√≠a III\Problems Set\PS1\3\stata"
 use "experimentales13"
 
 *b)
@@ -2486,9 +2486,9 @@ ttest re78, by(treat)
 reg re78 treat,r
 *Se crea la variable promedio de los ingresos previo al tratamiento
 gen mediapre=(re74+re75)/2
-*RegresiÛn contra todas las variables disponibles
+*Regresi√≥n contra todas las variables disponibles
 reg re78 treat age education black hispanic married nodegree mediapre,r
-*RegresiÛn sÛlo contra las variables significativas estadÌsticamente
+*Regresi√≥n s√≥lo contra las variables significativas estad√≠sticamente
 reg re78 treat education black ,r
 
 *d)
@@ -2500,7 +2500,7 @@ reg mediapre treat
 *3.2
 clear all
 set more off
-use "C:\PABLO\Documentos\FEN\20171 OtoÒo\MicroeconomÌa III\Problems Set\PS1\3\Stata\noexperimentales13.dta"
+use "C:\PABLO\Documentos\FEN\20171 Oto√±o\Microeconom√≠a III\Problems Set\PS1\3\Stata\noexperimentales13.dta"
 
 *e)
 eststo sumA : estpost summarize age education black hispanic married nodegree re74 re75 if treat==1
@@ -2533,6 +2533,6 @@ pscore treat re74 unemp74 re75 unemp75 black married nodegree hispanic age age2 
 twoway (kdensity myscore if treat==0)(kdensity myscore if treat==1)
 
 *g)
-*EstimaciÛn del efecto por MCO
+*Estimaci√≥n del efecto por MCO
 *Alternativa #1
 reg re78 treat myscore
