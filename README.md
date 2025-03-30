@@ -23,3 +23,8 @@ Compilation of Stata do files written during my undergraduate studies in economi
   * Descriptive statistics.
   * Logistic regression analysis.
   * Logistic regression analysis with Nearest Neighbor Matching.
+* <a href="https://github.com/pherreragalvez/Stata-dofiles/tree/main/Mds%20-%20Cuidados%2022" target="_blank">Characterization report on care (2022)</a>
+  * Surveys used:
+    * National Socioeconomic Characterization Survey 2020 (CASEN 2020).
+    * Social Welfare Survey 2021 (EBS 2021).
+    * Covid Social Survey.
