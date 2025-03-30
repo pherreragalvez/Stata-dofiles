@@ -9,13 +9,14 @@ Compilation of Stata do files written during my undergraduate studies in economi
   * T-tests.
   * Linear regressions, logit, probit, fixed effects, panel estimates, p-score.
 * <a href="https://github.com/pherreragalvez/big_data_science_diploma/tree/main/Miner%C3%ADa%20de%20datos" target="_blank">Bachelor's degree Research Project (2019)</a>
-  * Research project done with data from CASEN Survey (National Socioeconomic Characterization Survey) from Chile.
   * Data management and processing.
   * Descriptive statistics.
   * Logistic regression analysis.
   * Logistic regression analysis with Nearest Neighbor Matching.
+  * Research project done with data from CASEN Survey (National Socioeconomic Characterization Survey) from Chile.
 * <a href="https://github.com/pherreragalvez/Stata-dofiles/tree/main/Mds%20-%20Caracterizaci%C3%B3n%2019-20" target="_blank">Characterization on social protection topics(2019-20)</a>
-  * Characterization on social protection issues, i.e. health, dependency, unemployment, housing and education with data from CASEN Survey from Chile.
+  * Characterization on the following social protection issues: health, dependency, unemployment, housing and education.
+  * Analysis done with data from CASEN Survey from Chile.
 * <a href="https://github.com/pherreragalvez/Stata-dofiles/tree/main/Mds%20-%20Cuidados%2022" target="_blank">Characterization report on care (2022)</a>
   * Surveys used:
     * CASEN Survey 2020.
